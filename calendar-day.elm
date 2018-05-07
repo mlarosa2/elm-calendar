@@ -1,4 +1,4 @@
-module Day exposing(init)
+module Day exposing(init, view, update)
 
 import Html exposing (div)
 import Html.Attributes exposing (class)
@@ -21,13 +21,13 @@ type alias Model = { day: Integer
 type Msg = Add | Remove
 
 update : Msg -> Model -> Model
-update msg model =
+update msg model event =
   case msg of
     Add event ->
       append model.events event 
     
     Remove event ->
-      filter (\currentEvent -> event /= currentEvent) model.events
+      {model | events filter (\currentEvent -> event /= currentEvent) model.events } 
 
 
 
